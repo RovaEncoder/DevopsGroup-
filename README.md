@@ -42,7 +42,7 @@ Send a POST (REST protocol) request using terminal:
 ```bash
 curl --header "Content-Type: application/json" \
   --request POST \
-  --data '{"username":"sergkudinov","firstname":"sergei","lastname":"kudinov"}' \
+  --data '{"username":"alexcmr","firstname":"Alexandre","lastname":"Correia"}' \
   http://localhost:3000/user
 ```
 
