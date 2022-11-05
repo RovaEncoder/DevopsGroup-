@@ -20,7 +20,7 @@ This application is written on NodeJS and it uses Redis database.
 Go to the root directory of the application (where `package.json` file located) and run:
 
 ```
-npm install 
+npm install
 ```
 
 ## Usage
@@ -64,4 +64,4 @@ npm test
 
 ## Author
 
-Alexandre CORREIA
+Alexandre CORREIA & Christ ABESSOLO
