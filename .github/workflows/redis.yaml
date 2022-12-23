@@ -1,0 +1,39 @@
+name: Redis container example
+on: push
+
+jobs:
+  
+  container-job:
+    
+    runs-on: ubuntu-latest
+
+    container: node:10.18-jessie
+
+    services:
+      
+      redis:
+        
+        image: redis
+        
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Connect to Redis
+        run: node client.js
+  
+        env:
+          
+          REDIS_HOST: redis
+          
+          REDIS_PORT: 6379
