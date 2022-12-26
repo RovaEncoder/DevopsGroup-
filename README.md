@@ -1,6 +1,6 @@
 # ECE DEVOPS Project User-API
 
-It is a basic NodeJS web application exposing REST API that creates and stores user parameters in **Redis database**
+It is a basic **NodeJS** web application exposing **REST API** that creates and stores user parameters in **Redis database**
 
 ## Prérequis
 
@@ -14,35 +14,39 @@ Cette application est écris en **NodeJS** et utilise **Redis** comme base de do
 
 ### 1. Create a web application
 
-This application is written on NodeJS and it uses Redis database.
+Pour le projet, on utilise l'API utilisateur présenté ici [Userapi in Corrections](https://github.com/adaltas/ece-devops-2022-fall-corrections/tree/main/userapi).
 
-1. [Install NodeJS](https://nodejs.org/en/download/)
+### Utilisations
 
-2. [Install Redis](https://redis.io/download)
+1. Initier l'application (installer dépendance)
 
-3. Install application
-
-Go to the root directory of the application (where `package.json` file located) and run:
+Allez dans le répertoire racine de l'application (où le fichier `package.json` est localisé) et lancer:
 
 ```
 npm install
 ```
 
-## Usage
+2. Démarrer le serveur web
 
-1. Start a web server
-
-From the root directory of the project run:
+Dans le répertoire racine de l'application, lancer:
 
 ```
 npm start
 ```
 
-It will start a web server available in your browser at http://localhost:3000.
+Cela démarre un serveur web disponible dans votre navigateur à l'adresse http://localhost:3000.
 
-2. Create a user
+3. Tester
 
-Send a POST (REST protocol) request using terminal:
+Dans le répertoire racine de l'application, lancer:
+
+```
+npm test
+```
+
+4. Créer un utilisateur
+
+Envoyer une requête POST (REST protocol) en utilsant le terminal:
 
 ```bash
 curl --header "Content-Type: application/json" \
@@ -51,21 +55,12 @@ curl --header "Content-Type: application/json" \
   http://localhost:3000/user
 ```
 
-It will output:
+Il affichera:
 
 ```
 {"status":"success","msg":"OK"}
 ```
 
-Another way to test your REST API is to use [Postman](https://www.postman.com/).
-
-## Testing
-
-From the root directory of the project, run:
-
-```
-npm test
-```
 
 ## Author
 
