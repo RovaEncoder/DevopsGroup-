@@ -1,13 +1,18 @@
-# User API web application
+# ECE DEVOPS Project User-API
 
-It is a basic NodeJS web application exposing REST API that creates and stores user parameters in [Redis database](https://redis.io/).
+It is a basic NodeJS web application exposing REST API that creates and stores user parameters in **Redis database**
 
-## Functionality
+## Prérequis
 
-1. Start a web server
-2. Create a user
+Cette application est écris en **NodeJS** et utilise **Redis** comme base de donnée
 
-## Installation
+1. [Installer NodeJS](https://nodejs.org/en/download/)
+
+2. [Install Redis](https://redis.io/download)
+
+## Instructions
+
+### 1. Create a web application
 
 This application is written on NodeJS and it uses Redis database.
 
