@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-np
+  labels:
+    app: redis
+spec:
+  selector:
+    app: userapi
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 31000
+# kubectl apply -f service.yaml  (pour lancer le service)
