@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+  spec:
+    hosts:
+    - user-api-service
+    http:
+    - route:
+      - destination:
+          host: user-api-service
+          subset: v1
+metadata:
+  name: user-api-service
+---     
+apiVersion: networking.istio.io/v1beta1
+  kind: Service
+  spec:
+    hosts:
+    - redis-server
+    http:
+    - route:
+      - destination:
+          host: redis-server
+          subset: v1
