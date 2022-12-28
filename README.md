@@ -103,6 +103,8 @@ NB: Cette commande
 1. Initialise et lance la machine virtuelle
 2. Télécharge Ansible et le provisionnement mis en place par le playbook Anssible.
 
+Nous utilisons le système d'exploitation hashicorp/bionic64 : une version de base de très optimisée d'ubuntu
+
 Apres le téléchargement lancez la commande:
 
 ```bash
@@ -120,8 +122,6 @@ $ ls
 ```
 
 Avec la dernière commande vous verrez les fichiers composants de notre dossier userapi.
-
-Nous utilisons le système d'exploitation hashicorp/bionic64 : une version de base de très optimisée d'ubuntu
 
 ## 4. Build Docker image of your application
 
