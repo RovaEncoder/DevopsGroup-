@@ -81,6 +81,48 @@ A chaque push de nouveau code dans notre repository, voici ce qui apparaît dans
 
 On voit bien que le statut du jobs est `Succed`, donc les tâches se sont exécutés correctement, notre application est bien opérationelle et prête a être déployé.
 
+## 3. Configure and provision a virtual environment and run your application using the IaC approach
+
+Nous avons utilisé Vagrant pour configurer et gérer notre machine virtuelle, puis Ansible pour provisionner la machine virtuelle
+
+### Prérequis:
+
+#### Installation:
+
+1. [Installer VirtualBox](https://www.virtualbox.org/wiki/Downloads) (ou un autre hyperviseur)
+2. [Installer Vagrant](https://www.vagrantup.com/downloads.html)
+
+Ouvrir le terminal puis acceder au fichier IaC/ puis lancer la comande:
+
+```bash
+vagrant up
+```
+
+NB: Cette commande
+
+1. Initialise et lance la machine virtuelle
+2. Télécharge Ansible et le provisionnement mis en place par le playbook Anssible.
+
+Apres le téléchargement lancez la commande:
+
+```bash
+vagrant ssh nodejs_server
+```
+
+Ici, notre VM est liée au fichier userapi/ grâce à la propriété "synced_older" qui est dans le Vagrantfile
+
+Une fois connecté, vous pouvez parcourir le répertoire avec les commandes ci-dessous:
+
+```bash
+$ cd ../..
+$ cd /home/userapi
+$ ls
+```
+
+Avec la dernière commande vous verrez les fichiers composants de notre dossier userapi.
+
+Nous utilisons le système d'exploitation hashicorp/bionic64 : une version de base de très optimisée d'ubuntu
+
 ## 4. Build Docker image of your application
 
 Docker permet d'automatiser le déploiement des applications au sein d'un environnement de conteneurs, environnement que nous définissons.
@@ -216,13 +258,13 @@ Kubernetes est un système open source qui permet a ces utilisateurs d'automatis
 
 Vous devez installer [Minikube](https://minikube.sigs.k8s.io/docs/start/): il s'agit d'un outil facilitant l'éxécution locale de Kubernetes.
 
-* Voici la commande pour démarrer minikube:
+- Voici la commande pour démarrer minikube:
 
 ```bash
 minikube start
 ```
 
-* Voici la commande pour vérifier que le cluster kubernetes en utilsant Minikube fonctionne bien :
+- Voici la commande pour vérifier que le cluster kubernetes en utilsant Minikube fonctionne bien :
 
 ```bash
 minikube status
@@ -230,7 +272,7 @@ minikube status
 
 ### Utilisation
 
-Pour appliquer le deployment, les servives et les volumes Kubernetes; il faut se placer dans le répertoire [/k8s](https://github.com/RovaEncoder/DevopsGroup-/tree/main/k8s) et exécuter la commande suivante 
+Pour appliquer le deployment, les servives et les volumes Kubernetes; il faut se placer dans le répertoire [/k8s](https://github.com/RovaEncoder/DevopsGroup-/tree/main/k8s) et exécuter la commande suivante
 
 ```bash
 kubectl apply -f <filename.yaml>
@@ -238,71 +280,76 @@ kubectl apply -f <filename.yaml>
 
 Voici les différents fichier qui faut exécuter:
 
-* [deployment.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/deployment.yaml) qui décrit un état souhaité de notre API et notre base de donnée Redis.
-* [service.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/service.yaml)  qui permet d'exposer notre API et notre serveur Redis s'éxécutant sur un ensemble de pods en tant que service réseau.
-* [persistentvolume.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/persistentvolume.yaml) est un élément de stockage dans le cluster qui a été provisionné par un administrateur.
-* [persistentvolumeclaim.yaml](https://github.com/chemsss/devops-project/blob/main/k8s/persistentvolumeclaim.yaml) est une demande de stockage fait par l'utilisateur pour notre API.
+- [deployment.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/deployment.yaml) qui décrit un état souhaité de notre API et notre base de donnée Redis.
+- [service.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/service.yaml) qui permet d'exposer notre API et notre serveur Redis s'éxécutant sur un ensemble de pods en tant que service réseau.
+- [persistentvolume.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/persistentvolume.yaml) est un élément de stockage dans le cluster qui a été provisionné par un administrateur.
+- [persistentvolumeclaim.yaml](https://github.com/chemsss/devops-project/blob/main/k8s/persistentvolumeclaim.yaml) est une demande de stockage fait par l'utilisateur pour notre API.
 
 Ensuite, il suffit de vérifier que toutes les entités sont bien en cours d'éxécution
 
-* Pour les déployement:
+- Pour les déployement:
 
 ```bash
 kubectl get deployment
 ```
+
 On obtient:
 
 [getdeployment](images/getdeployment.png)
 
-* Pour les services:
+- Pour les services:
 
 ```bash
 kubectl get service
 ```
+
 On obtient:
 
 [getservice](images/getservice.png)
 
-* Pour le PersistentVolume:
+- Pour le PersistentVolume:
 
 ```bash
 kubectl get pv
 ```
+
 On obtient:
 
 [getpv](images/getpv.png)
 
-* Pour le PersistentVolumeClaim:
+- Pour le PersistentVolumeClaim:
 
 ```bash
 kubectl get pvc
 ```
+
 On obtient:
 
 [getpvc](images/getpvc.png)
 
 ### Tester
 
-* Dans un premier temps, on peut tester si tout fonctionne correctement grâce a cette commande :
+- Dans un premier temps, on peut tester si tout fonctionne correctement grâce a cette commande :
 
 ```bash
 minikube dashboard
 ```
+
 On obtient :
 
 [dashboardminikube](images/dashboardminikube.png)
 
-* Ensuite, on vérifie que les pods s'éxécute bien gràce a la commande suivante:
+- Ensuite, on vérifie que les pods s'éxécute bien gràce a la commande suivante:
 
 ```bash
 kubectl get pods
 ```
 
-On obtient: 
+On obtient:
 
 [getdeployment](images/getdeployment.png)
 
-* Pour finir, on exécute une commande qui nous permet de redirger le flux d'information de nos pods vers un port souhaité:
+- Pour finir, on exécute une commande qui nous permet de redirger le flux d'information de nos pods vers un port souhaité:
 
 ```bash
 kubectl port-forward deployment/user-api 3000:3000
@@ -313,7 +360,6 @@ Voici ce que l'on obtient sur l'adresse [https://localhost:3000](https://localho
 [kuberhome](images/kuberhome.png)
 
 ## 7. Make a service mesh using Istio
-
 
 ## Author
 
