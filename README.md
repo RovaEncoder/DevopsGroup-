@@ -240,8 +240,8 @@ Voici les différents fichier qui faut exécuter:
 
 * [deployment.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/deployment.yaml) qui décrit un état souhaité de notre API et notre base de donnée Redis.
 * [service.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/service.yaml)  qui permet d'exposer notre API et notre serveur Redis s'éxécutant sur un ensemble de pods en tant que service réseau.
-
-
+* [persistentvolume.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/persistentvolume.yaml) est un élément de stockage dans le cluster qui a été provisionné par un administrateur.
+* [persistentvolumeclaim.yaml](https://github.com/chemsss/devops-project/blob/main/k8s/persistentvolumeclaim.yaml) est une demande de stockage fait par l'utilisateur pour notre API.
 
 Ensuite, il suffit de vérifier que toutes les entités sont bien en cours d'éxécution
 
@@ -252,16 +252,16 @@ kubectl get deployment
 ```
 On obtient:
 
-
+[getdeployment](images/getdeployment.png)
 
 * Pour les services:
 
 ```bash
-kubectl get deployment
+kubectl get service
 ```
 On obtient:
 
-
+[getservice](images/getservice.png)
 
 * Pour le PersistentVolume:
 
@@ -270,7 +270,7 @@ kubectl get pv
 ```
 On obtient:
 
-
+[getpv](images/getpv.png)
 
 * Pour le PersistentVolumeClaim:
 
@@ -278,6 +278,42 @@ On obtient:
 kubectl get pvc
 ```
 On obtient:
+
+[getpvc](images/getpvc.png)
+
+### Tester
+
+* Dans un premier temps, on peut tester si tout fonctionne correctement grâce a cette commande :
+
+```bash
+minikube dashboard
+```
+On obtient :
+
+[dashboardminikube](images/dashboardminikube.png)
+
+* Ensuite, on vérifie que les pods s'éxécute bien gràce a la commande suivante:
+
+```bash
+kubectl get pods
+```
+
+On obtient: 
+
+[getdeployment](images/getdeployment.png)
+
+* Pour finir, on exécute une commande qui nous permet de redirger le flux d'information de nos pods vers un port souhaité:
+
+```bash
+kubectl port-forward deployment/user-api 3000:3000
+```
+
+Voici ce que l'on obtient sur l'adresse [https://localhost:3000](https://localhost:3000):
+
+[kuberhome](images/kuberhome.png)
+
+## 7. Make a service mesh using Istio
+
 
 ## Author
 
