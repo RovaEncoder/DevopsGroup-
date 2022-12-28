@@ -77,7 +77,7 @@ describe("User REST API", () => {
 					.request(app)
 					.get("/user/" + user.username)
 					.then((res) => {
-						chai.expect(res).to.have.status(200);
+						chai.expect(res).to.have.status(400);
 						chai.expect(res.body.status).to.equal("success");
 						chai.expect(res).to.be.json;
 					})
