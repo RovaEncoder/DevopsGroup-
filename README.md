@@ -133,7 +133,7 @@ docker ps
 
 ![dockerps](images/dockerps.png)
 
-5. On push notre image Docker sur [DockerHub](https://hub.docker.com/) à l'aide de la commande suivante (sans oublier le [.dockerignore]():
+5. On push notre image Docker sur [DockerHub](https://hub.docker.com/) à l'aide de la commande suivante (sans oublier le [.dockerignore](https://github.com/RovaEncoder/DevopsGroup-/blob/main/userapi/.dockerignore):
 
 ```
 docker push alexcmr27/userapi
@@ -210,7 +210,74 @@ Il affichera:
 
 ## 6. Make docker orchestration using Kubernetes
 
-Kubernetes est un système open source qui permet a ces utilisateurs d'automatiser le déploiement, la montée en charge et la mise en œuvre de conteneurs d'application sur des clusters de serveurs. La différence avec docker est que kubernetes propose plus de fonctionnalité que docker, comme
+Kubernetes est un système open source qui permet a ces utilisateurs d'automatiser le déploiement, la montée en charge et la mise en œuvre de conteneurs d'application sur des clusters de serveurs. La différence avec docker est que kubernetes propose plus de fonctionnalité que docker, comme l'auto-discovery
+
+### Installation
+
+Vous devez installer [Minikube](https://minikube.sigs.k8s.io/docs/start/): il s'agit d'un outil facilitant l'éxécution locale de Kubernetes.
+
+* Voici la commande pour démarrer minikube:
+
+```bash
+minikube start
+```
+
+* Voici la commande pour vérifier que le cluster kubernetes en utilsant Minikube fonctionne bien :
+
+```bash
+minikube status
+```
+
+### Utilisation
+
+Pour appliquer le deployment, les servives et les volumes Kubernetes; il faut se placer dans le répertoire [/k8s](https://github.com/RovaEncoder/DevopsGroup-/tree/main/k8s) et exécuter la commande suivante 
+
+```bash
+kubectl apply -f <filename.yaml>
+```
+
+Voici les différents fichier qui faut exécuter:
+
+* [deployment.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/deployment.yaml) qui décrit un état souhaité de notre API et notre base de donnée Redis.
+* [service.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/k8s/service.yaml)  qui permet d'exposer notre API et notre serveur Redis s'éxécutant sur un ensemble de pods en tant que service réseau.
+
+
+
+Ensuite, il suffit de vérifier que toutes les entités sont bien en cours d'éxécution
+
+* Pour les déployement:
+
+```bash
+kubectl get deployment
+```
+On obtient:
+
+
+
+* Pour les services:
+
+```bash
+kubectl get deployment
+```
+On obtient:
+
+
+
+* Pour le PersistentVolume:
+
+```bash
+kubectl get pv
+```
+On obtient:
+
+
+
+* Pour le PersistentVolumeClaim:
+
+```bash
+kubectl get pvc
+```
+On obtient:
 
 ## Author
 
