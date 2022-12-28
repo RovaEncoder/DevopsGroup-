@@ -10,7 +10,6 @@ Cette application est écris en **NodeJS** et utilise **Redis** comme base de do
 
 2. [Install Redis](https://redis.io/download)
 
-
 ## Instructions
 
 ## 1. Create a web application
@@ -21,7 +20,7 @@ Pour le projet, on utilise l'API utilisateur présenté ici [Userapi in Correcti
 
 Allez dans le répertoire racine de l'application (ici userapi/, où le fichier `package.json` est localisé) et lancer:
 
-``` bash
+```bash
 npm install
 ```
 
@@ -31,7 +30,7 @@ npm install
 
 Dans le répertoire racine de l'application, lancer:
 
-``` bash
+```bash
 npm start
 ```
 
@@ -64,10 +63,9 @@ Dans le répertoire racine de l'application, lancer:
 npm test
 ```
 
-Voici le résultat obtenu des 12 tests: 
+Voici le résultat obtenu des 12 tests:
 
 ![TEST_API](images/TEST_API.png)
-
 
 ## 2. Apply CI/CD pipeline
 
@@ -103,7 +101,7 @@ docker run hello-world
 
 Créer un [Dockerfile](https://github.com/RovaEncoder/DevopsGroup-/blob/main/userapi/Dockerfile) dans le répertoire racine du projet.
 
-2. Construire l'image docker de notre application. Pour cela il faut lancer la commande suivante dnas le répertoire racine de notre projet 
+2. Construire l'image docker de notre application. Pour cela il faut lancer la commande suivante dnas le répertoire racine de notre projet
 
 ```
 docker build -t devops-user-api .
@@ -113,24 +111,25 @@ Voici ce qu'on obtient :
 
 ![docker-build](images/docker-build.png)
 
-* Vous pouvez vérifier s'il l'image de votre application apparaît dans vos images Docker locales :
+- Vous pouvez vérifier s'il l'image de votre application apparaît dans vos images Docker locales :
 
 ```
-docker images 
+docker images
 ```
+
 3. Executer l'image de votre application dans un container Docker avec la commande suivante :
 
 ```
 docker run -p 3001:3000 -d devops-user-api
 ```
 
-* On peut vérifier que le container s'éxécute bien grace a la commande suivante :
+- On peut vérifier que le container s'éxécute bien grace a la commande suivante :
 
 ```
 docker ps
 ```
 
-* Voici ce qu'on obtient dans le terminal :
+- Voici ce qu'on obtient dans le terminal :
 
 ![dockerps](images/dockerps.png)
 
@@ -139,27 +138,28 @@ docker ps
 ```
 docker push alexcmr27/userapi
 ```
-* Voici ce que l'on obtient dans le terminal:
+
+- Voici ce que l'on obtient dans le terminal:
 
 ![pushdockerhub](images/pushdockerhub.png)
 
-6. On stoppe le container avce la commande suivante: 
+6. On stoppe le container avce la commande suivante:
 
 ```
 docker stop <CONTAINER_ID>
 ```
 
-* Voici ce que l'on obtient dans le terminal:
+- Voici ce que l'on obtient dans le terminal:
 
 ![pushdockerhub](images/pushdockerhub.png)
 
-### Test 
+### Test
 
-* Si vous vous rendez sur [https://localhost:3001](https://localhost:3001), vous pourrez obtenir la page d'accueil :
+- Si vous vous rendez sur [https://localhost:3001](https://localhost:3001), vous pourrez obtenir la page d'accueil :
 
 ![dockerlocalhost](images/dockerlocalhost.png)
 
-* Si vous rendez sur [notre compte](https://hub.docker.com/r/alexcmr27/userapi) DockerHub, vous pourrez accèder à l'image docker de notre apllication que vous pourrez alors pull:
+- Si vous rendez sur [notre compte](https://hub.docker.com/r/alexcmr27/userapi) DockerHub, vous pourrez accèder à l'image docker de notre apllication que vous pourrez alors pull:
 
 ![dockerhub](images/dockerhub.png)
 
@@ -179,7 +179,7 @@ Procéder à l'installation de [Docker Desktop](https://www.docker.com/get-start
 docker compose up
 ```
 
-* Voici ce que l'on obtient dans le terminal:
+- Voici ce que l'on obtient dans le terminal:
 
 ![dockercompose](images/dockercompose.png)
 
@@ -191,11 +191,11 @@ docker compose down
 
 ### Test
 
-* Si vous vous rendez sur [https://localhost:3001](https://localhost:3001), vous pourrez obtenir la page d'accueil :
+- Si vous vous rendez sur [https://localhost:3001](https://localhost:3001), vous pourrez obtenir la page d'accueil :
 
 ![dockerlocalhost](images/dockerlocalhost.png)
 
-* Si vous voulez retrouver les informations d'un utilsateur à partir de cette requête exécuter dans le containr de notre application
+- Si vous voulez retrouver les informations d'un utilsateur à partir de cette requête exécuter dans le containr de notre application
 
 ```bash
 curl --header "Content-Type: application/json" \
