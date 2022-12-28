@@ -210,6 +210,8 @@ Il affichera:
 
 ## 6. Make docker orchestration using Kubernetes
 
+Kubernetes est un système open source qui permet a ces utilisateurs d'automatiser le déploiement, la montée en charge et la mise en œuvre de conteneurs d'application sur des clusters de serveurs. La différence avec docker est que kubernetes propose plus de fonctionnalité que docker, comme
+
 ## Author
 
 Alexandre CORREIA & Christ ABESSOLO
