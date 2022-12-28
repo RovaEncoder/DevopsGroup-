@@ -36,9 +36,8 @@ describe("User REST API", () => {
 					chai.expect(res).to.have.status(201);
 					chai.expect(res.body.status).to.equal("success");
 					chai.expect(res).to.be.json;
-					done();
 				})
-				.timeout(10000)
+				.then(done, done)
 				.catch((err) => {
 					throw err;
 				});
@@ -57,9 +56,8 @@ describe("User REST API", () => {
 					chai.expect(res).to.have.status(400);
 					chai.expect(res.body.status).to.equal("error");
 					chai.expect(res).to.be.json;
-					done();
 				})
-				.timeout(10000)
+				.then(done, done)
 				.catch((err) => {
 					throw err;
 				});
@@ -82,9 +80,8 @@ describe("User REST API", () => {
 						chai.expect(res).to.have.status(200);
 						chai.expect(res.body.status).to.equal("success");
 						chai.expect(res).to.be.json;
-						done();
 					})
-					.timeout(10000)
+					.then(done, done)
 					.catch((err) => {
 						throw err;
 					});
@@ -99,9 +96,8 @@ describe("User REST API", () => {
 					chai.expect(res).to.have.status(400);
 					chai.expect(res.body.status).to.equal("error");
 					chai.expect(res).to.be.json;
-					done();
 				})
-				.timeout(10000)
+				.then(done, done)
 				.catch((err) => {
 					throw err;
 				});
@@ -109,4 +105,4 @@ describe("User REST API", () => {
 	});
 });
 
-//timmeout add
+//then(done, done)
