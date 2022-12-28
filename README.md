@@ -295,7 +295,7 @@ kubectl get deployment
 
 On obtient:
 
-[getdeployment](images/getdeployment.png)
+![getdeployment](images/getdeployment.png)
 
 - Pour les services:
 
@@ -305,7 +305,7 @@ kubectl get service
 
 On obtient:
 
-[getservice](images/getservice.png)
+![getservice](images/getservice.png)
 
 - Pour le PersistentVolume:
 
@@ -315,7 +315,7 @@ kubectl get pv
 
 On obtient:
 
-[getpv](images/getpv.png)
+![getpv](images/getpv.png)
 
 - Pour le PersistentVolumeClaim:
 
@@ -325,7 +325,7 @@ kubectl get pvc
 
 On obtient:
 
-[getpvc](images/getpvc.png)
+![getpvc](images/getpvc.png)
 
 ### Tester
 
@@ -337,7 +337,7 @@ minikube dashboard
 
 On obtient :
 
-[dashboardminikube](images/dashboardminikube.png)
+![dashboardminikube](images/dashboardminikube.png)
 
 - Ensuite, on vérifie que les pods s'éxécute bien gràce a la commande suivante:
 
@@ -347,7 +347,7 @@ kubectl get pods
 
 On obtient:
 
-[getdeployment](images/getdeployment.png)
+![getdeployment](images/getdeployment.png)
 
 - Pour finir, on exécute une commande qui nous permet de redirger le flux d'information de nos pods vers un port souhaité:
 
@@ -357,9 +357,33 @@ kubectl port-forward deployment/user-api 3000:3000
 
 Voici ce que l'on obtient sur l'adresse [https://localhost:3000](https://localhost:3000):
 
-[kuberhome](images/kuberhome.png)
+![kuberhome](images/kuberhome.png)
 
 ## 7. Make a service mesh using Istio
+
+Istio est une plateforme Open Source de Service Mesh qui permet de contrôler la manière dont les données sont partagées entre les microservices. Cela permettra de faire un maillage de service entre notre API et la base de donnée Redis.
+
+### Installation
+
+* Tout d'abord il faut vérifié que kubernetes s'éxécute correctement grâce aux comandes suivantes :
+
+```bash
+minikube start
+minikube status
+```
+
+* Ensuite il faut installer [Istio](https://istio.io/docs/setup/getting-started/) jusqu'a cette [étape](https://istio.io/docs/setup/getting-started/#next-steps)
+
+### Utilisation
+
+Tout d'abord, il faut modifier le fichier [deployment.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/istio/deployment.yaml). Maintenant on crée 4 déploiment: deux déploiment concerne une premiere version de notre code (v1) et les deux autres uen deuxième version (v2); chaque version comporte un déploiment de notre API et une autre du serveur Redis. Voici la commande que l'on eéxécute dans le répertoire [/istio](https://github.com/RovaEncoder/DevopsGroup-/tree/main/istio):
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+Ensuite, on crée un fichier [routerequest.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/istio/routerequest.yaml) qui permet de créer une configuration pour router les requêtes entre 2 versions différentes de votre application.
+
 
 ## Author
 
