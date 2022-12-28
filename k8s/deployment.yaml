@@ -20,24 +20,25 @@ spec:
           ports:
             - containerPort: 6379
 
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-api
+  name: devops-user-api
   labels:
-    app: user-api
+    app: devops-user-api
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: user-api
+      app: devops-user-api
   template:
     metadata:
       labels:
-        app: user-api
+        app: devosp-user-api
     spec:
       containers:
-      - name: user-api
+      - name: devops-user-api
         image: alexcmr27/userapi
         ports:
           - containerPort: 3000
