@@ -10,7 +10,7 @@ kind: VirtualService
           subset: v1
 metadata:
   name: user-api-service
----     
+---
 apiVersion: networking.istio.io/v1beta1
   kind: Service
   spec:
