@@ -365,14 +365,14 @@ Istio est une plateforme Open Source de Service Mesh qui permet de contrôler la
 
 ### Installation
 
-* Tout d'abord il faut vérifié que kubernetes s'éxécute correctement grâce aux comandes suivantes :
+- Tout d'abord il faut vérifié que kubernetes s'éxécute correctement grâce aux comandes suivantes :
 
 ```bash
 minikube start
 minikube status
 ```
 
-* Ensuite il faut installer [Istio](https://istio.io/docs/setup/getting-started/) jusqu'a cette [étape](https://istio.io/docs/setup/getting-started/#next-steps)
+- Ensuite il faut installer [Istio](https://istio.io/docs/setup/getting-started/) jusqu'a cette [étape](https://istio.io/docs/setup/getting-started/#next-steps)
 
 ### Utilisation
 
@@ -384,6 +384,25 @@ kubectl apply -f deployment.yaml
 
 Ensuite, on crée un fichier [routerequest.yaml](https://github.com/RovaEncoder/DevopsGroup-/blob/main/istio/routerequest.yaml) qui permet de créer une configuration pour router les requêtes entre 2 versions différentes de votre application.
 
+### 8. Implement Monitoring to our containerized application
+
+- Grafana est une plateforme gratuite et ouverte qui permet de concevoir et de partager des tableaux de bord et des graphiques. Elle peut être utilisée pour se connecter à différentes sources de données, y compris Prometheus, et offre une interface conviviale pour créer et visualiser des graphiques et des diagrammes.
+
+- Prometheus est une collection d'outils open source destinés à surveiller et à alerter sur les systèmes. Son fonctionnement consiste à récupérer des mesures provenant de multiples sources et à les stocker dans une base de données de séries chronologiques.
+
+Prometheus et Grafana sont deux outils qui, lorsqu'ils sont utilisés ensemble, fournissent une solution robuste pour surveiller et visualiser les performances du système et des applications. Ils sont généralement déployés avec des applications conteneurisées qui s'exécutent sur Kubernetes.
+
+- Nous avons utilisé la prom-clientbibliothèque pour exposer plusieurs points de terminaison de métrique à partir de notre application API utilisateur.
+
+<img src = "/images/client.png" width = 500 alt ="client">
+
+- Ensuite, nous utilisons les deux services Prometheus et Grafana dans le localhost en utilisant ces commandes:
+
+```
+kubectl port-forward svc/prometheus -n istio-system 9090
+kubectl port-forward svc/grafana -n istio-system 3000
+
+```
 
 ## Author
 
