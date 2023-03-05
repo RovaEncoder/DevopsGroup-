@@ -35,3 +35,13 @@ jobs:
 
       - run: npm ci
       - run: npm run build --if-present
+      - run: npm test
+
+      - name: "Deploy to Azure Web App"
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "ProjetDevop"
+          slot-name: "Production"
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_54397237649C4847975AA23B5BBD613D }}
+          package: .
