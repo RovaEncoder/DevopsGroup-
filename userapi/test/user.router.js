@@ -1,12 +1,8 @@
-const app = require("../src/index");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const app = require("../src/index");
 const db = require("../src/dbClient");
 const userController = require("../src/controllers/user");
-
-const usern = "alexcmr";
-const fname = "Alexandre";
-const lname = "Correia";
 
 chai.use(chaiHttp);
 
@@ -24,29 +20,29 @@ describe("User REST API", () => {
 	describe("POST /user", () => {
 		it("create a new user", (done) => {
 			const user = {
-				username: usern,
-				firstname: fname,
-				lastname: lname,
+				username: "sergkudinov",
+				firstname: "Sergei",
+				lastname: "Kudinov",
 			};
 			chai
 				.request(app)
 				.post("/user")
 				.send(user)
 				.then((res) => {
-					chai.expect(res).to.have.status(400);
+					chai.expect(res).to.have.status(201);
 					chai.expect(res.body.status).to.equal("success");
 					chai.expect(res).to.be.json;
+					done();
 				})
-				.then(done, done)
 				.catch((err) => {
-					throw err;
+					done(err);
 				});
 		});
 
 		it("pass wrong parameters", (done) => {
 			const user = {
-				firstname: fname,
-				lastname: lname,
+				firstname: "Sergei",
+				lastname: "Kudinov",
 			};
 			chai
 				.request(app)
@@ -56,19 +52,20 @@ describe("User REST API", () => {
 					chai.expect(res).to.have.status(400);
 					chai.expect(res.body.status).to.equal("error");
 					chai.expect(res).to.be.json;
+					done();
 				})
-				.then(done, done)
 				.catch((err) => {
-					throw err;
+					done(err);
 				});
 		});
 	});
+
 	describe("GET /user", () => {
 		it("get an existing user", (done) => {
 			const user = {
-				username: usern,
-				firstname: fname,
-				lastname: lname,
+				username: "sergkudinov",
+				firstname: "Sergei",
+				lastname: "Kudinov",
 			};
 			// Create a user
 			userController.create(user, () => {
@@ -77,13 +74,13 @@ describe("User REST API", () => {
 					.request(app)
 					.get("/user/" + user.username)
 					.then((res) => {
-						chai.expect(res).to.have.status(400);
+						chai.expect(res).to.have.status(200);
 						chai.expect(res.body.status).to.equal("success");
 						chai.expect(res).to.be.json;
+						done();
 					})
-					.then(done, done)
 					.catch((err) => {
-						throw err;
+						done(err);
 					});
 			});
 		});
@@ -96,13 +93,11 @@ describe("User REST API", () => {
 					chai.expect(res).to.have.status(400);
 					chai.expect(res.body.status).to.equal("error");
 					chai.expect(res).to.be.json;
+					done();
 				})
-				.then(done, done)
 				.catch((err) => {
-					throw err;
+					done(err);
 				});
 		});
 	});
 });
-
-//then(done, done)
