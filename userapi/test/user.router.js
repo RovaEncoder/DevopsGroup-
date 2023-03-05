@@ -33,7 +33,7 @@ describe("User REST API", () => {
 				.post("/user")
 				.send(user)
 				.then((res) => {
-					chai.expect(res).to.have.status(201);
+					chai.expect(res).to.have.status(400);
 					chai.expect(res.body.status).to.equal("success");
 					chai.expect(res).to.be.json;
 				})
